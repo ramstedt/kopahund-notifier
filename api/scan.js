@@ -30,7 +30,7 @@ export async function fetchHtml(url = CONFIG.TARGET_URL) {
   }
 }
 
-async function fetchRenderedHtml(url = CONFIG.TARGET_URL) {
+export async function fetchRenderedHtml(url = CONFIG.TARGET_URL) {
   if (process.env.VERCEL) {
     try {
       const { default: chromium } = await import('@sparticuz/chromium');
@@ -150,4 +150,35 @@ export async function getAdverts() {
   }
 
   return items;
+}
+
+export async function debugScan() {
+  const out = {
+    targetUrl: CONFIG.TARGET_URL,
+    useBrowser: USE_BROWSER,
+    static: { ok: false, count: 0, error: null },
+    headless: { ok: false, count: 0, error: null },
+  };
+
+  // Try static
+  try {
+    const html = await fetchHtml();
+    const items = parseAdverts(html);
+    out.static.ok = !!html;
+    out.static.count = items.length;
+  } catch (e) {
+    out.static.error = String(e?.message || e);
+  }
+
+  // Try headless
+  try {
+    const rendered = await fetchRenderedHtml();
+    const items = parseAdverts(rendered);
+    out.headless.ok = !!rendered;
+    out.headless.count = items.length;
+  } catch (e) {
+    out.headless.error = String(e?.message || e);
+  }
+
+  return out;
 }
