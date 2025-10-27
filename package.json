@@ -1,0 +1,23 @@
+{
+  "name": "kopahund-notifier",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "dev": "node src/run-once.js",
+    "run-once": "node src/run-once.js",
+    "schedule": "node src/scheduler.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "luxon": "^3.5.0",
+    "node-cron": "^3.0.3",
+    "puppeteer": "^24.26.1",
+    "resend": "^4.0.0",
+    "undici": "^6.19.8"
+  }
+}

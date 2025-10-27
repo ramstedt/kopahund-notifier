@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/scan.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "crons": [
+    { "path": "/api/scan", "schedule": "0 * * * *" }
+  ]
+}
