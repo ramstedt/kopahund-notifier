@@ -11,7 +11,7 @@ It can:
 
 ## ✅ What you need
 
-- Node.js version **18 or newer**
+- Node.js version **20 or newer**
 - A **Resend.com** account (free tier is enough)
 - A URL from https://www.kopahund.se with filters for the dogs you want
 
